@@ -15,6 +15,7 @@ function Table({ columns, data }) {
 
 const TableContainer = styled.table`
   border-collapse: collapse;
+  margin: 10px;
 
   tr:nth-child(even) {
     background-color: #ffffff;

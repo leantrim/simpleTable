@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Table from "./common/Table";
+import Search from "./common/Search";
 
 import articleService from "../services/articleServices";
 
@@ -9,12 +10,12 @@ function ProductTable() {
   const [articles, setArticles] = useState([]);
 
   const loadArticles = async () => {
+    // Hämta produkterna från backend servern
     const articles = await articleService.getAllArticlesFromDb();
     setArticles(articles);
   };
 
   useEffect(() => {
-    // Hämta produkterna
     loadArticles();
   }, []);
 
@@ -39,16 +40,18 @@ function ProductTable() {
     setArticles(articles);
   };
 
-  // En lista på arrays av specifik information som ska laddas in i tabelen.
-  const tableHeadColumn = ["title", "description", "price", "category"];
+  // En lista på arrays av specifik information som ska visas i tabelen, ordningen av arrayen visas i tabeln också.
+  const tableHeadColumn = ["title", "description", "category", "price"];
 
   return (
     <Container>
+      {/* Search component */}
       <Search
         placeholder="Search for a product"
         value={search}
         onChange={(e) => handleChange(e)}
       ></Search>
+      {/* Table component, can be re-used easily while the backend can handle the filtration. */}
       <Table columns={tableHeadColumn} data={articles} />
     </Container>
   );
@@ -59,15 +62,6 @@ const Container = styled.div`
   grid-template-rows: 1fr;
   background-color: #e8e8e8;
   border-radius: 8px;
-`;
-
-const Search = styled.input`
-  width: 18%;
-  margin: 20px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  padding: 10px;
 `;
 
 export default ProductTable;
