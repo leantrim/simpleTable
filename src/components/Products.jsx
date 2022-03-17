@@ -1,21 +1,20 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Table from "./common/Table";
 
-function ProductTable(props) {
-  const [value, setValue] = useState();
+import getArticlesFromDb from "../services/articleServices";
+
+function ProductTable() {
   const [articles, setArticles] = useState([]);
 
-  const getArticlesFromDb = async () => {
-    try {
-      const { data } = await axios.get("http://localhost:5000");
-      setArticles(data);
-    } catch (error) {}
+  const loadArticles = async () => {
+    const articles = await getArticlesFromDb();
+
+    setArticles(articles);
   };
 
   useEffect(() => {
-    getArticlesFromDb();
+    loadArticles();
   }, []);
 
   const handleChange = (e) => {
@@ -33,8 +32,8 @@ function ProductTable(props) {
   ];
 
   return (
-    <div>
-      <input value={value} onChange={(e) => handleChange(e)}></input>
+    <div className="container">
+      <input value={""} onChange={(e) => handleChange(e)}></input>
       <Table columns={tableHeadColumn} data={articles} />
     </div>
   );
