@@ -13,6 +13,12 @@ function Table({ columns, data }) {
   );
 }
 
-const TableContainer = styled.table``;
+const TableContainer = styled.table`
+  border-collapse: collapse;
+
+  tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+`;
 
 export default Table;

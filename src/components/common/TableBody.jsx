@@ -15,12 +15,11 @@ function TableBody({ columns, data }) {
   );
 }
 
-const Tablerow = styled.tr`
-  margin-bottom: 2em;
-`;
+const Tablerow = styled.tr``;
 
 const Td = styled.td`
   text-align: center;
+  border: 1px solid black;
 `;
 
 export default TableBody;

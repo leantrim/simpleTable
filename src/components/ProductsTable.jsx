@@ -64,6 +64,10 @@ const Container = styled.div`
 const Search = styled.input`
   width: 18%;
   margin: 20px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  padding: 10px;
 `;
 
 export default ProductTable;
