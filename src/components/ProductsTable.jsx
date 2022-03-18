@@ -10,7 +10,7 @@ function ProductTable() {
   const [articles, setArticles] = useState([]);
 
   const loadArticles = async () => {
-    // Hämta produkterna från backend servern
+    // Hämta produkterna från backend servern & updatera statet
     const articles = await articleService.getAllArticlesFromDb();
     setArticles(articles);
   };
@@ -19,29 +19,29 @@ function ProductTable() {
     loadArticles();
   }, []);
 
+  // En lista på arrays av specifik information som ska visas i tabelen, ordningen av arrayen visas i tabeln också.
+  const tableHeadColumn = ["title", "description", "category", "price"];
+
   const handleChange = async (e) => {
-    // Stoppa sidan från att ladda om
+    // Stoppa sidan från att ladda om när man skriver i sökrutan
     e.preventDefault();
 
     // Updatera statet med det man skriver i sökrutan
     setSearch(e.target.value);
 
     // Updatera data som till det man skriver in
-    const data = { search: e.target.value };
+    const data = { search: e.target.value, tableHeadColumn };
 
-    // Anrop kommer göras vid varje knapptryck men man kan enkelt ändra till
+    //OBS! Anrop kommer göras vid varje bokstav som skrivs in i sökrutan men man kan enkelt ändra till
     // att sökning ska göras när man trycker enter istället så slipper man
-    // flera anrop till databasen.
+    // göra flera anrop till databasen.
 
-    /* Anrop till databas */
-    const articles = await articleService.getArticlesFromDb(data);
+    /* Anrop till databas med data objectet */
+    const articles = await articleService.getFilteredArticlesFromDb(data);
 
     // Updatera statet med det filtrerade objected som kommer från databasen
     setArticles(articles);
   };
-
-  // En lista på arrays av specifik information som ska visas i tabelen, ordningen av arrayen visas i tabeln också.
-  const tableHeadColumn = ["title", "description", "category", "price"];
 
   return (
     <Container>
@@ -51,7 +51,7 @@ function ProductTable() {
         value={search}
         onChange={(e) => handleChange(e)}
       ></Search>
-      {/* Table component, can be re-used easily while the backend can handle the filtration. */}
+      {/* Table komponent, kan enkelt återanvändas medans backenden sköter filtrering. */}
       <Table columns={tableHeadColumn} data={articles} />
     </Container>
   );
