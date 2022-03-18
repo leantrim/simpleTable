@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledTable } from "../styles/StyledTable";
+import { StyledTable } from "../styled/StyledTable";
 import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 

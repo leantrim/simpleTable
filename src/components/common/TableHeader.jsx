@@ -1,5 +1,5 @@
 import React from "react";
-import { THead, TH, TR } from "../styles/StyledTable";
+import { THead, TH, TR } from "../styled/StyledTable";
 
 function TableHeader({ columns }) {
   // Funktion som ändrar stringen till Stor bokstav

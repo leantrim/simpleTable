@@ -1,5 +1,5 @@
 import React from "react";
-import { TBody, TR, TD } from "../styles/StyledTable";
+import { TBody, TR, TD } from "../styled/StyledTable";
 
 function TableBody({ columns, data }) {
   // Generera unik id då det finns articlar i databasen med samma article_number
