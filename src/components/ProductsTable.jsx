@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Table from "./common/Table";
 import Search from "./common/Search";
 
-import articleService from "../services/articleServices";
+import article from "../services/articleServices";
 
 function ProductTable() {
   const [search, setSearch] = useState("");
@@ -11,7 +11,7 @@ function ProductTable() {
 
   const loadArticles = async () => {
     // Hämta produkterna från backend servern & updatera statet
-    const articles = await articleService.getAllArticlesFromDb();
+    const { data: articles } = await article.getAll();
     setArticles(articles);
   };
 
@@ -23,21 +23,19 @@ function ProductTable() {
   const tableHeadColumn = ["title", "description", "category", "price"];
 
   const handleChange = async (e) => {
-    // Stoppa sidan från att ladda om när man skriver i sökrutan
-    e.preventDefault();
-
     // Updatera statet med det man skriver i sökrutan
     setSearch(e.target.value);
 
-    // Updatera data som till det man skriver in i sökrutan
+    // Updatera data som ändras beroende på vad man skriver i sökrutan
     const data = { search: e.target.value };
 
     //OBS! Anrop kommer göras vid varje bokstav som skrivs in i sökrutan men man kan enkelt ändra till
     // att sökning ska göras när man trycker enter istället så slipper man
     // göra flera anrop till databasen.
+    // Man hade även kunnat göra filtrering på frontend för att slippa backend anropp helt men ville visa lite backend kod.
 
     /* Anrop till databas med data objectet */
-    const articles = await articleService.getFilteredArticlesFromDb(data);
+    const { data: articles } = await article.getFiltered(data);
 
     // Updatera statet med det filtrerade objected som kommer från databasen
     setArticles(articles);

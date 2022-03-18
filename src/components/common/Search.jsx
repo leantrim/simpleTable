@@ -3,15 +3,15 @@ import styled from "styled-components";
 
 function Search({ placeholder, value, onChange }) {
   return (
-    <SearchStyle
+    <StyledSearch
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange(e)}
-    ></SearchStyle>
+    />
   );
 }
 
-const SearchStyle = styled.input`
+const StyledSearch = styled.input`
   width: 20%;
   margin: 20px;
   padding: 10px;

@@ -14,6 +14,7 @@ export const TD = styled.td`
   border: 1px solid black;
 `;
 
+// Tomma regler, lämnar dem kvar som placeholders ifall man skulle stylea i framtiden
 export const THead = styled.thead``;
 
 export const TFoot = styled.tfoot``;

@@ -9,22 +9,20 @@ function TableBody({ columns, data }) {
 
   return (
     <TBody>
-      {/* Mappa över data som kommer in från higher order component */}
+      {/* Mappa över data som kommer in från parent component */}
       {data.map((item) => (
         <TR key={generateUniqueKey(item)}>
-          {/* Mappa över header arrayen som kommer in från higher order component */}
+          {/* Mappa över header arrayen som kommer in från parent component !**! */}
           {columns.map((header) => (
             // skriv ut data objectet om den matchar med header
-            <TD key={item[header]}>
-              {/* Om ingen beskrivning finns för artikeln skriv ut meddelande om det. Finns en produkt som saknar beskrivning. */}
-              {(!item[header] && "Beskrivning saknas för denna produkten") ||
-                item[header]}
-            </TD>
+            <TD key={item[header]}>{item[header]}</TD>
           ))}
         </TR>
       ))}
     </TBody>
   );
 }
+
+// Man kan använda bibloteket _lodash (_get(item, item2)) för att enkelt få fram columner som ska visas baserat på header men valde att köra med rå javascript istället.
 
 export default TableBody;
