@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import { THead, TH, TR } from "../styles/StyledTable";
 
 function TableHeader({ columns }) {
   // Funktion som ändrar stringen till Stor bokstav
@@ -8,20 +8,14 @@ function TableHeader({ columns }) {
   }
 
   return (
-    <TableStyle>
-      <Tablerow>
+    <THead>
+      <TR>
         {columns.map((column) => (
-          <Th key={column}>{capitalizeFirstLetter(column)}</Th>
+          <TH key={column}>{capitalizeFirstLetter(column)}</TH>
         ))}
-      </Tablerow>
-    </TableStyle>
+      </TR>
+    </THead>
   );
 }
-
-const TableStyle = styled.thead``;
-
-const Tablerow = styled.tr``;
-
-const Th = styled.th``;
 
 export default TableHeader;

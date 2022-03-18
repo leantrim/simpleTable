@@ -1,25 +1,16 @@
 import React from "react";
-import styled from "styled-components";
+import { StyledTable } from "../styles/StyledTable";
 import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 
 function Table({ columns, data }) {
   return (
-    <TableContainer>
+    <StyledTable>
       <TableHeader columns={columns} />
 
       <TableBody columns={columns} data={data} />
-    </TableContainer>
+    </StyledTable>
   );
 }
-
-const TableContainer = styled.table`
-  border-collapse: collapse;
-  margin: 10px;
-
-  tr:nth-child(even) {
-    background-color: #ffffff;
-  }
-`;
 
 export default Table;

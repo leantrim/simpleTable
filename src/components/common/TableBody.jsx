@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import { TBody, TR, TD } from "../styles/StyledTable";
 
 function TableBody({ columns, data }) {
   // Generera unik id då det finns articlar i databasen med samma article_number
@@ -8,28 +8,23 @@ function TableBody({ columns, data }) {
   };
 
   return (
-    <tbody>
+    <TBody>
       {/* Mappa över data som kommer in från higher order component */}
       {data.map((item) => (
-        <tr key={generateUniqueKey(item)}>
+        <TR key={generateUniqueKey(item)}>
           {/* Mappa över header arrayen som kommer in från higher order component */}
           {columns.map((header) => (
             // skriv ut data objectet om den matchar med header
-            <Td key={item[header]}>
+            <TD key={item[header]}>
               {/* Om ingen beskrivning finns för artikeln skriv ut meddelande om det. Finns en produkt som saknar beskrivning. */}
               {(!item[header] && "Beskrivning saknas för denna produkten") ||
                 item[header]}
-            </Td>
+            </TD>
           ))}
-        </tr>
+        </TR>
       ))}
-    </tbody>
+    </TBody>
   );
 }
-
-const Td = styled.td`
-  text-align: center;
-  border: 1px solid black;
-`;
 
 export default TableBody;

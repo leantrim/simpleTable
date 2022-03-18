@@ -29,8 +29,8 @@ function ProductTable() {
     // Updatera statet med det man skriver i sökrutan
     setSearch(e.target.value);
 
-    // Updatera data som till det man skriver in
-    const data = { search: e.target.value, tableHeadColumn };
+    // Updatera data som till det man skriver in i sökrutan
+    const data = { search: e.target.value };
 
     //OBS! Anrop kommer göras vid varje bokstav som skrivs in i sökrutan men man kan enkelt ändra till
     // att sökning ska göras när man trycker enter istället så slipper man
