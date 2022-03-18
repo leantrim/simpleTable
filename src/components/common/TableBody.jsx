@@ -15,7 +15,11 @@ function TableBody({ columns, data }) {
           {/* Mappa över header arrayen som kommer in från higher order component */}
           {columns.map((header) => (
             // skriv ut data objectet om den matchar med header
-            <Td key={item[header]}>{item[header]}</Td>
+            <Td key={item[header]}>
+              {/* Om ingen beskrivning finns för artikeln skriv ut meddelande om det. Finns en produkt som saknar beskrivning. */}
+              {(!item[header] && "Beskrivning saknas för denna produkten") ||
+                item[header]}
+            </Td>
           ))}
         </tr>
       ))}
