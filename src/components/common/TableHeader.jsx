@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 function TableHeader({ columns }) {
+  // Funktion som ändrar stringen till Stor bokstav
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -10,7 +11,7 @@ function TableHeader({ columns }) {
     <TableStyle>
       <Tablerow>
         {columns.map((column) => (
-          <Th>{capitalizeFirstLetter(column)}</Th>
+          <Th key={column}>{capitalizeFirstLetter(column)}</Th>
         ))}
       </Tablerow>
     </TableStyle>
